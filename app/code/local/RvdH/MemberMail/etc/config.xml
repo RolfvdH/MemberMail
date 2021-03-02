@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<RvdH_MemberMail>
+			<version>0.1.1</version>
+		</RvdH_MemberMail>
+	</modules>
+
+    <global>
+
+        <models>
+            <membermail>
+                <class>RvdH_MemberMail_Model</class>
+            </membermail>
+        </models>
+
+        <helpers>
+            <membermail>
+                <class>RvdH_MemberMail_Helper</class>
+            </membermail>
+        </helpers>
+
+        <resources>
+            <RvdH_MemberMail_setup>
+                <setup>
+                    <module>RvdH_MemberMail</module>
+                    <class>RvdH_MemberMail_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </RvdH_MemberMail_setup>
+
+             <RvdH_MemberMail_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </RvdH_MemberMail_write>
+
+            <RvdH_MemberMail_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </RvdH_MemberMail_read>
+        </resources>
+
+    </global>
+
+    <crontab>
+        <jobs>
+            <MemberMail_Send>
+                <schedule><cron_expr>* * * * *</cron_expr></schedule>
+                <run><model>membermail/observer::sendMemberMail</model></run>
+            </MemberMail_Send>
+        </jobs>
+    </crontab>
+
+
+	</frontend>
+
+
+</config>
